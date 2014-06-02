@@ -1,0 +1,47 @@
+{
+  "name": "grunt-ftp-upload-log",
+  "description": "一个grunt-ftp-upload的修改插件，支持按文件上传 及 log日志文件输出",
+  "version": "0.1.0",
+  "homepage": "https://github.com/baofen14787/grunt-ftp-upload-log",
+  "author": {
+    "name": "hugo",
+    "email": "baofen14787@gmail.com",
+    "url": "http://www.ghugo.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/baofen14787/grunt-ftp-upload-log.git"
+  },
+  "bugs": {
+    "url": "https://github.com/baofen14787/grunt-ftp-upload-log/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/baofen14787/grunt-ftp-upload-log/blob/master/LICENSE-MIT"
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+    "dependencies": {
+        "prompt": "~0.2.11",
+        "jsftp": "0.6.x",
+        "grunt": "~0.4.5"
+    },
+  "devDependencies": {
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-nodeunit": "^0.3.3",
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
