@@ -28,6 +28,7 @@ module.exports = function (grunt) {
     var authVals;
     var exclusions;
     //hugo add
+    var options;
     var logUrlRoot;     //生成的log提单地址
     var logDest;    //生成的log文件路径
     var logStr = '';    //生成的LOG内容
@@ -142,7 +143,17 @@ module.exports = function (grunt) {
                 cb(err);
             } else {
                 log.ok('Uploaded file: ' + inFilename.green + ' to: ' + ('/' + remoteRoot + '/' + currPath).yellow);
-                logStr += logUrlRoot + localRoot + inFilename + '\n';
+                var cPath;
+                if(currPath =="\\"){
+                    cPath = '';
+                }else{
+                    cPath = currPath + '/'
+                }
+                var logUrl = remoteRoot + '/' + cPath + inFilename +  '\n';
+                if(options.logFun){
+                    logUrl = options.logFun(logUrl);
+                }
+                logStr += logUrl;
                 cb(null);
             }
         });
@@ -187,6 +198,14 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('ftp_upload_log', '一个grunt-ftp-upload的修改插件，支持按文件上传 及 log日志文件输出', function () {
         var done = this.async();
 
+        //默认参数
+        options = this.options({
+            logUrlRoot      :   '',
+            logDest         :   '',
+            logFun          :   null        //log日志处理函数
+        });
+
+
         // Init
         ftp = new Ftp({
             host: this.data.auth.host,
@@ -198,8 +217,8 @@ module.exports = function (grunt) {
         authVals = this.data.auth.authKey ? getAuthByKey(this.data.auth.authKey) : getAuthByKey(this.data.auth.host);
         exclusions = this.data.exclusions || [];
         ftp.useList = true;
-        logUrlRoot = this.data.logUrlRoot;
-        logDest = this.data.logDest;
+        logUrlRoot = options.logUrlRoot;
+        logDest = options.logDest;
 
         // 如果localRoot是路径的话，按原来的逻辑执行，否则当作按文件上传
         if (grunt.file.isDir(localRoot)) {

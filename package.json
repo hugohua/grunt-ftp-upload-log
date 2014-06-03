@@ -1,7 +1,7 @@
 {
   "name": "grunt-ftp-upload-log",
   "description": "一个grunt-ftp-upload的修改插件，支持按文件上传 及 log日志文件输出",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "homepage": "https://github.com/baofen14787/grunt-ftp-upload-log",
   "author": {
     "name": "hugo",
